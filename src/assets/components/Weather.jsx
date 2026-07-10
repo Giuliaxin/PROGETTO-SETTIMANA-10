@@ -8,12 +8,16 @@ const Weather = ({ details, onReset }) => {
     const navigate = useNavigate();
     const [dailyForecast, setDailyForecast] = useState([]);
     const [hourlyForecast, setHourlyForecast] = useState([]);
+    const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
         if (!details) {
             navigate('/search');
             return;
         }
+
+        const favs = JSON.parse(localStorage.getItem('weatherFavorites') || '[]');
+        setIsFavorite(favs.some(item => item.toLowerCase() === details.name.toLowerCase()));
 
         const saved = localStorage.getItem('recentWeatherSearches');
         const recent = saved ? JSON.parse(saved) : [];
@@ -44,6 +48,19 @@ const Weather = ({ details, onReset }) => {
 
     if (!details) return null;
 
+    const toggleFavorite = () => {
+        const favs = JSON.parse(localStorage.getItem('weatherFavorites') || '[]');
+        let updated;
+        if (isFavorite) {
+            updated = favs.filter(item => item.toLowerCase() !== details.name.toLowerCase());
+            setIsFavorite(false);
+        } else {
+            updated = [...favs, details.name];
+            setIsFavorite(true);
+        }
+        localStorage.setItem('weatherFavorites', JSON.stringify(updated));
+    };
+
     const handleBack = () => {
         onReset();
         navigate('/search');
@@ -53,10 +70,26 @@ const Weather = ({ details, onReset }) => {
         <Container className='mt-4 d-flex flex-column justify-content-center align-items-center flex-grow-1'>
             
             <Card className='glass-panel w-100 mb-4' style={{ maxWidth: '560px' }}>
-                <Card.Header className='bg-transparent text-center pt-4 pb-0 border-0'>
+                <Card.Header className='bg-transparent text-center pt-4 pb-0 border-0 d-flex justify-content-center align-items-center position-relative'>
                     <h2 className='mb-0 fw-normal text-white fs-1 tracking-wide'>
                         {details.name}, {details.sys.country}
                     </h2>
+                    <button
+                        onClick={toggleFavorite}
+                        style={{
+                            background: 'none',
+                            border: 'none',
+                            color: isFavorite ? '#ffc107' : 'rgba(255,255,255,0.4)',
+                            fontSize: '1.8rem',
+                            cursor: 'pointer',
+                            marginLeft: '12px',
+                            lineHeight: '1',
+                            transition: 'color 0.2s',
+                            outline: 'none'
+                        }}
+                    >
+                        {isFavorite ? '★' : '☆'}
+                    </button>
                 </Card.Header>
                 
                 <Card.Body className='text-center px-4 pb-4 pt-2'>

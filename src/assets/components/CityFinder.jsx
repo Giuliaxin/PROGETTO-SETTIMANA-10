@@ -19,12 +19,17 @@ const CityFinder = ({ onWeatherSelect }) => {
 	const [isFetching, setIsFetching] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
 	const [recentSearches, setRecentSearches] = useState([]);
+	const [favorites, setFavorites] = useState([]);
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const saved = localStorage.getItem('recentWeatherSearches');
-		if (saved) {
-			setRecentSearches(JSON.parse(saved));
+		const savedRecent = localStorage.getItem('recentWeatherSearches');
+		if (savedRecent) {
+			setRecentSearches(JSON.parse(savedRecent));
+		}
+		const savedFavs = localStorage.getItem('weatherFavorites');
+		if (savedFavs) {
+			setFavorites(JSON.parse(savedFavs));
 		}
 	}, []);
 
@@ -120,6 +125,25 @@ const CityFinder = ({ onWeatherSelect }) => {
 						)}
 					</Button>
 				</Form>
+
+				{favorites.length > 0 && (
+					<div className='border-top border-white border-opacity-10 pt-3 text-center mb-3'>
+						<span className='text-white-50 small d-block mb-2'>Città Preferite</span>
+						<div className='d-flex flex-wrap gap-2 justify-content-center'>
+							{favorites.map((city, index) => (
+								<button
+									key={index}
+									className='recent-tag'
+									type='button'
+									style={{ borderColor: 'rgba(255, 193, 7, 0.4)' }}
+									onClick={() => executeSearch(null, city)}
+								>
+									★ {city}
+								</button>
+							))}
+						</div>
+					</div>
+				)}
 
 				{recentSearches.length > 0 && (
 					<div className='border-top border-white border-opacity-10 pt-3 text-center'>
