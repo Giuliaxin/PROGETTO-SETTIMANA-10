@@ -1,0 +1,107 @@
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/bg.png') no-repeat center center fixed;
+  background-size: cover;
+  color: #ffffff;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(25px) saturate(120%);
+  -webkit-backdrop-filter: blur(25px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-radius: 28px !important;
+  overflow: hidden;
+}
+
+.glass-nav-footer {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.navbar-custom {
+  margin-top: 10px;
+  border-radius: 16px;
+  padding: 12px 24px !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.text-neon-cyan {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+.text-neon-purple {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+.btn-neon {
+  background: rgba(0, 242, 254, 0.08) !important;
+  border: 2px solid rgba(0, 242, 254, 0.6) !important;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: #ffffff !important;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-neon:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: rgba(0, 242, 254, 0.18) !important;
+  border-color: rgba(0, 242, 254, 1) !important;
+}
+
+.form-glass {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border-radius: 14px !important;
+}
+
+.form-glass:focus {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(0, 242, 254, 0.6) !important;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.2) !important;
+}
+
+.weather-sub-card {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(5px);
+  padding: 12px 16px;
+  transition: all 0.2s ease;
+}
+
+.ampolla-wrapper {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 10px auto;
+}
+
+.ampolla {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
